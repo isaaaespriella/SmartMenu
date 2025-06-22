@@ -2,7 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProyectoMaui.Views.Login"
              Shell.NavBarIsVisible="False"
-             BackgroundColor="#82C2FF"
+             BackgroundColor="#FBF0FF"
              Title="Login">
 
     <Grid>
@@ -15,41 +15,32 @@
                     Spacing="20">
 
                     <Image Source="booba_logo.png"
-                           HeightRequest="120"
+                           HeightRequest="200"
                            Aspect="AspectFill"
                            HorizontalOptions="Center"/>
-
-                    <Frame BackgroundColor="White"
-                           CornerRadius="15"
-                           Padding="20"
-                           HasShadow="True"
-                           BorderColor="#6CADD4">
-
-                        <VerticalStackLayout Spacing="15">
-
+                    
+                        <VerticalStackLayout Spacing="20">
+                            
                             <!-- Usuario -->
                             <VerticalStackLayout Spacing="5">
-                                <Label Text="Usuario" TextColor="#5B88B3" FontFamily="AileronBold"/>
-                                <Entry Placeholder="tapioca@boba.com"
-                                       Keyboard="Email"
-                                       
-                                       FontFamily="AileronBold"/>
+                                <Label Text="   Usuario" FontFamily="OpenSansSemibold" FontSize="15" TextColor="Black"/>
+                                <Border Style="{StaticResource OvalBorderStyle}">
+                                    <Entry Style="{StaticResource OvalEntryStyle}" BackgroundColor="Transparent" Placeholder="     booba@gmail.com"/>
+                                </Border>
                             </VerticalStackLayout>
 
                             <!-- Contraseña -->
                             <VerticalStackLayout Spacing="5">
-                                <Label Text="Contraseña" TextColor="#5B88B3" FontFamily="AileronBold"/>
-                                <Entry Placeholder="••••••••"
-                                       IsPassword="True"
-                                      
-                                       FontFamily="AileronBold"/>
+                                <Label Text="   Contraseña" FontFamily="OpenSansSemibold" FontSize="15" TextColor="Black"/>
+                                <Border Style="{StaticResource OvalBorderStyle}">
+                                    <Entry Style="{StaticResource OvalEntryStyle}" BackgroundColor="Transparent" Placeholder="     ••••••••" IsPassword="True"/>
+                                </Border>
                             </VerticalStackLayout>
 
                             <!-- Rol -->
-                            <!-- Rol -->
                             <VerticalStackLayout Spacing="5">
-                                <Label Text="Rol" TextColor="#5B88B3" FontFamily="AileronBold"/>
-                                <Picker FontFamily="AileronBold">
+                                <Label Text="   Rol" FontFamily="OpenSansSemibold" FontSize="15" TextColor="Black"/>
+                                <Picker Style="{StaticResource OvalPickerStyle}" Title="     Selecciona un rol..." SelectedIndex="{Binding SelectedRole}">
                                     <Picker.ItemsSource>
                                         <x:Array Type="{x:Type x:String}">
                                             <x:String>Administrador</x:String>
@@ -63,15 +54,15 @@
 
                             <!-- Botón -->
                             <Button Text="Iniciar Sesión"
-                                    BackgroundColor="#4A6E91"
+                                    BackgroundColor="#451C54"
                                     TextColor="White"
-                                    FontFamily="AileronBold"
+                                    FontFamily="OpenSansSemibold" 
+                                    FontSize="15"
                                     CornerRadius="10"
                                     HeightRequest="50"
                                    
                                     Clicked="OnLoginClicked"/>
                         </VerticalStackLayout>
-                    </Frame>
                 </VerticalStackLayout>
             </Grid>
         </ScrollView>
