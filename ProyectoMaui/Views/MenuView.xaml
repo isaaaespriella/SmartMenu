@@ -9,7 +9,7 @@
     <ScrollView>
         <VerticalStackLayout Padding="30" Spacing="20" HorizontalOptions="Center" VerticalOptions="Center">
             <views:EncabezadoView />
-            <Label Text="Men� de Platillos" FontSize="28" FontFamily="AileronBold" TextColor="Black" HorizontalOptions="Center"/>
+            <Label Text="Menu de Platillos" FontSize="28" FontFamily="AileronBold" TextColor="Black" HorizontalOptions="Center"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

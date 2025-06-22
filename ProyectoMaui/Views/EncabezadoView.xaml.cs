@@ -1,6 +1,6 @@
 namespace ProyectoMaui.Views;
 
-public partial class EncabezadoView : ContentPage
+public partial class EncabezadoView : ContentView
 {
 	public EncabezadoView()
 	{
