@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views1="clr-namespace:ProyectoMaui.Views"
+             x:Class="ProyectoMaui.Views.MainPage"
+             BackgroundColor="{StaticResource SecondaryColor}"
+             Title="Inicio">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="18" HorizontalOptions="Center" VerticalOptions="Center">
+
+            <views1:EncabezadoView />
+
+            <Label Text="Smart Menu" Style="{StaticResource TitleLabel}" />
+
+            <Grid ColumnDefinitions="*, *" RowDefinitions="Auto, Auto, Auto">
+                <Button Text="Menú" Clicked="OnMenuClicked" Style="{StaticResource PrimaryButton}" Grid.Row="0" Grid.Column="0" />
+                <Button Text="Pedidos" Clicked="OnPedidosClicked" Style="{StaticResource PrimaryButton}" Grid.Row="0" Grid.Column="1" />
+                <Button Text="Clientes" Clicked="OnClientesClicked" Style="{StaticResource PrimaryButton}" Grid.Row="1" Grid.Column="0" />
+                <Button Text="Inventario" Clicked="OnInventarioClicked" Style="{StaticResource PrimaryButton}" Grid.Row="1" Grid.Column="1" />
+                <Button Text="Proveedores" Clicked="OnProveedoresClicked" Style="{StaticResource PrimaryButton}" Grid.Row="2" Grid.Column="0" />
+                <Button Text="Reportes" Clicked="OnReportesClicked" Style="{StaticResource PrimaryButton}" Grid.Row="2" Grid.Column="1" />
+            </Grid>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoMaui.Views.Login"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#82C2FF"
+             Title="Login">
+    
+    <Grid>
+        <ScrollView>
+            <Grid VerticalOptions="CenterAndExpand"
+              HorizontalOptions="Center"
+              Padding="30">
+
+                <VerticalStackLayout Spacing="25"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center">
+
+
+                    <Image Source="booba_logo.png"
+                       HeightRequest="120"
+                       Aspect="AspectFill"
+                       HorizontalOptions="Center"/>
+
+                    <Frame BackgroundColor="White"
+                       CornerRadius="15"
+                       Padding="20"
+                       HasShadow="True"
+                       BorderColor="#6CADD4">
+
+                        <VerticalStackLayout Spacing="15">
+
+                            <!--email-->
+                            <VerticalStackLayout Spacing="5">
+                                <Label Text="Usuario" TextColor="#5B88B3" FontFamily="AileronBold"/>
+                                <Entry Placeholder="tapioca@boba.com"
+                                   Keyboard="Email"
+                                   Text="{Binding Usuario}"
+                                   FontFamily="AileronBold"/>
+                            </VerticalStackLayout>
+
+                            <!--password-->
+                            <VerticalStackLayout Spacing="5">
+                                <Label Text="Contraseña" TextColor="#5B88B3" FontFamily="AileronBold"/>
+                                <Entry Placeholder="••••••••"
+                                   IsPassword="True"
+                                   Text="{Binding Contraseña}"
+                                   FontFamily="AileronBold"/>
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Spacing="5">
+                                <Label Text="Rol" TextColor="#5B88B3" FontFamily="AileronBold"/>
+                                <Picker SelectedItem="{Binding SelectedRole}"
+                                    FontFamily="AileronBold">
+                                    <Picker.ItemsSource>
+                                        <x:Array Type="{x:Type x:String}">
+                                            <x:String>Administrador</x:String>
+                                            <x:String>Mesero</x:String>
+                                            <x:String>Cocinero</x:String>
+                                        </x:Array>
+                                    </Picker.ItemsSource>
+                                </Picker>
+                            </VerticalStackLayout>
+
+                            <!--btn-->
+                            <Button Text="Iniciar Sesión"
+                                BackgroundColor="#4A6E91"
+                                TextColor="White"
+                                FontFamily="AileronBold"
+                                CornerRadius="10"
+                                HeightRequest="50"
+                                Command="{Binding LoginCommand}"/>
+                        </VerticalStackLayout>
+                    </Frame>
+                </VerticalStackLayout>
+            </Grid>
+        </ScrollView>
+    </Grid>
+</ContentPage>
