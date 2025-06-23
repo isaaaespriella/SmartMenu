@@ -1,10 +1,12 @@
+using ProyectoMaui.ViewModels;
+
 namespace ProyectoMaui.Views;
 
 public partial class ClientesView : ContentPage
-{
-	public ClientesView()
-	{
-		InitializeComponent();
-		Shell.SetNavBarIsVisible(this, false);
-	}
+{ public ClientesView()
+		{
+			InitializeComponent();
+			BindingContext = new ClientesViewModel(); 
+			Shell.SetNavBarIsVisible(this, false);
+		}
 }

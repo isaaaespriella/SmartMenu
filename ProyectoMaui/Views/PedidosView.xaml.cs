@@ -16,6 +16,7 @@ public partial class PedidosView : ContentPage
         InitializeComponent();
         viewModel = new PedidosViewModel();
         BindingContext = viewModel;
+        Shell.SetNavBarIsVisible(this, false);
     }
 
     protected override async void OnAppearing()

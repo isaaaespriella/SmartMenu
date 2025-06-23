@@ -2,10 +2,12 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:ProyectoMaui.Views"
+             xmlns:viewModels="clr-namespace:ProyectoMaui.ViewModels"
              x:Class="ProyectoMaui.Views.ClientesView"
              BackgroundColor="#FBF0FF">
+<ScrollView>
 
-    <VerticalStackLayout Padding="30" Spacing="20">
+       <VerticalStackLayout Padding="30" Spacing="20">
 
         <!-- Encabezado personalizado -->
         <views:EncabezadoView />
@@ -20,7 +22,7 @@
                        Text="{Binding NuevoCliente.Nombre}" />
 
                 <Entry Placeholder="Usuario"
-                       Text="{Binding NuevoCliente.Usuario}" />
+                       Text="{Binding NuevoCliente.NombreUsuario}" />
 
                 <Entry Placeholder="Contraseña"
                        Text="{Binding NuevoCliente.Contrasena}"
@@ -34,6 +36,41 @@
 
                 <Button Text="Registrar Cliente"
                         Command="{Binding RegistrarCommand}" />
+        <Button Text="Cargar Todos los Clientes"
+                Command="{Binding CargarTodosCommand}" />
+
+        <CollectionView ItemsSource="{Binding Clientes}"
+                        Margin="0,20,0,0">
+               <CollectionView.ItemTemplate>
+                      <DataTemplate>
+                             <Frame BorderColor="#CCC"
+                                    BackgroundColor="White"
+                                    Padding="10"
+                                    Margin="0,5">
+                                    <VerticalStackLayout Spacing="5">
+                                           <Label Text="{Binding Nombre, StringFormat='Nombre: {0}'}" />
+                                           <Label Text="{Binding NombreUsuario, StringFormat='Usuario: {0}'}" />
+                                           <Label Text="{Binding Email, StringFormat='Email: {0}'}" />
+                                    </VerticalStackLayout>
+                             </Frame>
+                      </DataTemplate>
+               </CollectionView.ItemTemplate>
+        </CollectionView>
            
+        <Entry Placeholder="ID de cliente"
+               Text="{Binding ClienteIdBuscar}" />
+
+        <Button Text="Buscar Cliente"
+                Command="{Binding BuscarCommand}" />
+
+        <!-- Mostrar los datos encontrados -->
+        <Label Text="Resultado del GET:"
+               FontAttributes="Bold"
+               Margin="0,10,0,0" />
+
+        <Label Text="{Binding ClienteEncontrado.Nombre, StringFormat='Nombre: {0}'}" />
+        <Label Text="{Binding ClienteEncontrado.Email, StringFormat='Email: {0}'}" />
+        <Label Text="{Binding ClienteEncontrado.Telefono, StringFormat='Teléfono: {0}'}" />
     </VerticalStackLayout>
+</ScrollView>
 </ContentPage>
