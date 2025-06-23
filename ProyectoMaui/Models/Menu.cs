@@ -11,5 +11,7 @@ public class Menu
     public int Id { get; set; }
     public string Platillo { get; set; }
     public double Precio { get; set; }
-    public bool Disponibilidad { get; set; }
+    public int Disponibilidad { get; set; }
+    
+    public string DisponibilidadTexto => Disponibilidad == 1 ? "Disponible" : "No disponible";
 }

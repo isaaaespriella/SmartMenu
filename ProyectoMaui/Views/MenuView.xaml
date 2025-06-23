@@ -3,15 +3,36 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:ProyectoMaui.Views"
              x:Class="ProyectoMaui.Views.MenuView"
-             BackgroundColor="#FBF0FF"
->
-    <ScrollView>
-        <VerticalStackLayout Padding="30" Spacing="20" HorizontalOptions="Center">
+             BackgroundColor="#FBF0FF">
 
-            <views:EncabezadoView />
+    <VerticalStackLayout Padding="30" Spacing="20">
 
-            <Label Text="Menú" Style="{StaticResource TitleLabel}" />
+        <views:EncabezadoView />
 
-        </VerticalStackLayout>
-    </ScrollView>
+        <!-- TÍTULO -->
+        <Label Text="Menú de Platillos"
+               FontSize="24"
+               FontAttributes="Bold"
+               TextColor="Black" /> 
+
+        <!-- LISTA DE PLATILLOS -->
+        <CollectionView ItemsSource="{Binding Platillos}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BackgroundColor="White"
+                           BorderColor="#DDD"
+                           CornerRadius="12"
+                           Padding="10"
+                           Margin="0,5">
+                        <VerticalStackLayout Spacing="5">
+                            <Label Text="{Binding Platillo}" FontAttributes="Bold" />
+                            <Label Text="{Binding Precio, StringFormat='Precio: ${0}'}" />
+                            <Label Text="{Binding Disponibilidad, StringFormat='Disponible: {0}'}" />
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </VerticalStackLayout>
 </ContentPage>
