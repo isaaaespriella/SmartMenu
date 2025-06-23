@@ -37,6 +37,35 @@ namespace ProyectoMaui.ViewModels
             }
         }
 
+        public async Task CrearPedidoAsync(int usuarioId, int platilloId)
+        {
+            try
+            {
+                var nuevoPedido = new Pedido
+                {
+                    Fecha = DateTime.Now,
+                    Completado = 0,
+                    UsuarioId = usuarioId,
+                    PlatilloId = platilloId
+                };
+
+                var exito = await _pedidoService.CrearPedidoAsync(nuevoPedido);
+
+                if (exito)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Éxito", "Pedido creado", "OK");
+                    await ObtenerPedidosAsync();
+                }
+                else
+                {
+                    await Application.Current.MainPage.DisplayAlert("Error", "No se pudo crear el pedido", "OK");
+                }
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

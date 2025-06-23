@@ -5,35 +5,51 @@
              x:Class="ProyectoMaui.Views.PedidosView"
              BackgroundColor="#FBF0FF">
 
-    <VerticalStackLayout Padding="30" Spacing="20">
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="20">
 
-        <views:EncabezadoView />
+            <views:EncabezadoView />
 
-        <!-- TÍTULO -->
-        <Label Text="Pedidos"
-               FontSize="24"
-               FontAttributes="Bold"
-               TextColor="Black" /> 
+            <Label Text="Pedidos"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   TextColor="Black" />
 
-        <CollectionView ItemsSource="{Binding Pedidos}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Frame BackgroundColor="White"
-                           BorderColor="#DDD"
-                           CornerRadius="12"
-                           Padding="10"
-                           Margin="0,5">
-                        <VerticalStackLayout Spacing="5">
-                            <Label Text="{Binding Id, StringFormat='ID: {0}'}" FontAttributes="Bold" />
-                            <Label Text="{Binding Fecha, StringFormat='Fecha: {0:dd/MM/yyyy HH:mm}'}" />
-                            <Label Text="{Binding CompletadoTexto, StringFormat='Completado: {0}'}" />
-                            <Label Text="{Binding UsuarioId, StringFormat='Usuario: {0}'}" />
-                            <Label Text="{Binding PlatilloId, StringFormat='Platillo: {0}'}" />
-                        </VerticalStackLayout>
-                    </Frame>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+            <!--formulario-->
+            <Label Text="Ingresa el ID del usuario" />
+            <Entry x:Name="usuarioEntry" Keyboard="Numeric" Placeholder="Usuario" />
 
-    </VerticalStackLayout>
+            <Label Text="Ingresa el ID del platillo" />
+            <Entry x:Name="platilloEntry" Keyboard="Numeric" Placeholder="Platillo" />
+
+            <Button Text="Crear Pedido"
+                    BackgroundColor="#451C54"
+                    TextColor="White"
+                    Clicked="OnCrearPedidoClicked" />
+
+            <!--lista de pepeppedidos-->
+            <CollectionView ItemsSource="{Binding Pedidos}"
+                            Margin="0,20,0,0"
+                            HeightRequest="500">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BackgroundColor="White"
+                               BorderColor="#DDD"
+                               CornerRadius="12"
+                               Padding="10"
+                               Margin="0,5">
+                            <VerticalStackLayout Spacing="5">
+                                <Label Text="{Binding Id, StringFormat='ID: {0}'}" FontAttributes="Bold" />
+                                <Label Text="{Binding Fecha, StringFormat='Fecha: {0:dd/MM/yyyy HH:mm}'}" />
+                                <Label Text="{Binding CompletadoTexto, StringFormat='Completado: {0}'}" />
+                                <Label Text="{Binding UsuarioId, StringFormat='Usuario: {0}'}" />
+                                <Label Text="{Binding PlatilloId, StringFormat='Platillo: {0}'}" />
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
