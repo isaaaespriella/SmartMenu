@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoMaui.Views.SignupView"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#FBF0FF"
+             Title="Signup">
+
+    <Grid>
+        <ScrollView>
+            <Grid>
+                <VerticalStackLayout
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="Center"
+                    Padding="30"
+                    Spacing="20">
+
+                    <Image Source="booba_logo.png"
+                           HeightRequest="200"
+                           Aspect="AspectFill"
+                           HorizontalOptions="Center"/>
+                    
+                        <VerticalStackLayout Spacing="20">
+                            
+                            <!-- Nombre -->
+                            <VerticalStackLayout Spacing="5">
+                                <Label Text="   Usuario" FontFamily="OpenSansSemibold" FontSize="15" TextColor="Black"/>
+                                <Border Style="{StaticResource OvalBorderStyle}">
+                                    <Entry Style="{StaticResource OvalEntryStyle}" BackgroundColor="Transparent" Placeholder="     Carmelo Sanchez"/>
+                                </Border>
+                            </VerticalStackLayout>
+
+                            <!-- Correo -->
+                            <VerticalStackLayout Spacing="5">
+                                <Label Text="   Email" FontFamily="OpenSansSemibold" FontSize="15" TextColor="Black"/>
+                                <Border Style="{StaticResource OvalBorderStyle}">
+                                    <Entry Style="{StaticResource OvalEntryStyle}" BackgroundColor="Transparent" Placeholder="     boba@gmail.com"/>
+                                </Border>
+                            </VerticalStackLayout>
+                            
+                            <!-- Contraseña -->
+                            <VerticalStackLayout Spacing="5">
+                                <Label Text="   Contraseña" FontFamily="OpenSansSemibold" FontSize="15" TextColor="Black"/>
+                                <Border Style="{StaticResource OvalBorderStyle}">
+                                    <Entry Style="{StaticResource OvalEntryStyle}" BackgroundColor="Transparent" Placeholder="     ••••••••" IsPassword="True"/>
+                                </Border>
+                            </VerticalStackLayout>
+                            
+                            <!-- Telefono -->
+                            <VerticalStackLayout Spacing="5">
+                                <Label Text="   Telefono" FontFamily="OpenSansSemibold" FontSize="15" TextColor="Black"/>
+                                <Border Style="{StaticResource OvalBorderStyle}">
+                                    <Entry Style="{StaticResource OvalEntryStyle}" BackgroundColor="Transparent" Placeholder="     123*******"/>
+                                </Border>
+                            </VerticalStackLayout>
+
+                            <!-- Rol -->
+                            <VerticalStackLayout Spacing="5">
+                                <Label Text="   Rol" FontFamily="OpenSansSemibold" FontSize="15" TextColor="Black"/>
+                                <Picker Style="{StaticResource OvalPickerStyle}" Title="     Selecciona un rol..." SelectedIndex="{Binding SelectedRole}">
+                                    <Picker.ItemsSource>
+                                        <x:Array Type="{x:Type x:String}">
+                                            <x:String>Administrador</x:String>
+                                            <x:String>Mesero</x:String>
+                                            <x:String>Cocinero</x:String>
+                                        </x:Array>
+                                    </Picker.ItemsSource>
+                                </Picker>
+                            </VerticalStackLayout>
+                            
+                            <!-- Botón Signup -->
+                            <Button Text="Registrate"
+                                    BackgroundColor="#DEFFFC"
+                                    TextColor="White"
+                                    FontFamily="OpenSansSemibold" 
+                                    FontSize="15"
+                                    CornerRadius="10"
+                                    HeightRequest="50"
+                                    Clicked="OnSignupClicked"
+                                    />
+                            
+                            <Button Text="Regresar al Login"
+                                    BackgroundColor="#451C54"
+                                    TextColor="White"
+                                    FontFamily="OpenSansSemibold" 
+                                    FontSize="15"
+                                    CornerRadius="10"
+                                    HeightRequest="50"
+                                    Clicked="OnLoginViewClicked"
+                                    />
+                            
+                        </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Grid>
+        </ScrollView>
+    </Grid>
+</ContentPage>

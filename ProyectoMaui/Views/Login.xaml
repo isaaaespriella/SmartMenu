@@ -52,7 +52,7 @@
                             </VerticalStackLayout>
 
 
-                            <!-- Botón -->
+                            <!-- Botón Login -->
                             <Button Text="Iniciar Sesión"
                                     BackgroundColor="#451C54"
                                     TextColor="White"
@@ -62,6 +62,17 @@
                                     HeightRequest="50"
                                    
                                     Clicked="OnLoginClicked"/>
+                            
+                            <!-- Botón Signup -->
+                            <Button Text="Registrate"
+                                    BackgroundColor="#DEFFFC"
+                                    TextColor="White"
+                                    FontFamily="OpenSansSemibold" 
+                                    FontSize="15"
+                                    CornerRadius="10"
+                                    HeightRequest="50"
+                                   
+                                    Clicked="OnSignupClicked"/>
                         </VerticalStackLayout>
                 </VerticalStackLayout>
             </Grid>

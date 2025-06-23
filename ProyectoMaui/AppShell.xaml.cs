@@ -10,6 +10,9 @@ public partial class AppShell : Shell
         Routing.RegisterRoute("clientes", typeof(Views.ClientesView));
         Routing.RegisterRoute("inventario", typeof(Views.InventarioView));
         Routing.RegisterRoute("proveedores", typeof(Views.ProveedoresView));
+        Routing.RegisterRoute("reportes", typeof(Views.ReportesView));
+        Routing.RegisterRoute("signup", typeof(Views.SignupView));
+        Routing.RegisterRoute("login", typeof(Views.Login));
 
     }
 }
