@@ -11,6 +11,7 @@ namespace ProyectoMaui.Models
         public int Id { get; set; }
         public DateTime Fecha { get; set; } = DateTime.Now;
         public int Completado { get; set; }
+        
         public int UsuarioId { get; set; }
         public int PlatilloId { get; set; }
         

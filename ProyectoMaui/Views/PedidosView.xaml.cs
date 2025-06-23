@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ProyectoMaui.ViewModels;
 
 namespace ProyectoMaui.Views;
@@ -22,6 +17,21 @@ public partial class PedidosView : ContentPage
     protected override async void OnAppearing()
     {
         base.OnAppearing();
-        await viewModel.ObtenerPedidosAsync(); //  IMPORTANTE: este método debe ejecutarse
+        await viewModel.ObtenerPedidosAsync();
+    }
+
+    private async void OnCrearPedidoClicked(object sender, EventArgs e)
+    {
+        if (int.TryParse(usuarioEntry.Text, out int usuarioId) &&
+            int.TryParse(platilloEntry.Text, out int platilloId))
+        {
+            await viewModel.CrearPedidoAsync(usuarioId, platilloId);
+            usuarioEntry.Text = string.Empty;
+            platilloEntry.Text = string.Empty;
+        }
+        else
+        {
+            await DisplayAlert("Error", "Debes ingresar IDs válidos", "OK");
+        }
     }
 }
