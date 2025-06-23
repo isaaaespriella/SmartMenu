@@ -15,7 +15,6 @@
                FontAttributes="Bold"
                TextColor="Black" /> 
 
-        <!-- LISTA DE PEDIDOS -->
         <CollectionView ItemsSource="{Binding Pedidos}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
