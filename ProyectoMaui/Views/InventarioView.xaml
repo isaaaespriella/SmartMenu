@@ -10,7 +10,6 @@
 
             <views:EncabezadoView />
 
-            <!-- Tarjeta del título -->
             <Frame BackgroundColor="#6200EE"
                    CornerRadius="12"
                    Padding="20"
@@ -65,7 +64,6 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-            <!-- Botón de agregar insumo -->
             <Button Text="Agregar Insumo"
                     Clicked="OnAgregarInsumo"
                     BackgroundColor="#03DAC5"
