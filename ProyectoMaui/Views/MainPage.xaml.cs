@@ -5,7 +5,6 @@ public partial class MainPage : ContentPage
 	public MainPage()
 	{
 		InitializeComponent();
-        Shell.SetNavBarIsVisible(this, false);
 	}
 
 	private async void OnMenuClicked(object sender, EventArgs e)

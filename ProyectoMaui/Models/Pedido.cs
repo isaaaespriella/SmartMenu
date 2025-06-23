@@ -10,9 +10,11 @@ namespace ProyectoMaui.Models
     {
         public int Id { get; set; }
         public DateTime Fecha { get; set; } = DateTime.Now;
-        public bool Completado { get; set; }
-        public int ClienteId { get; set; }
+        public int Completado { get; set; }
+        public int UsuarioId { get; set; }
         public int PlatilloId { get; set; }
+        
+        public string CompletadoTexto => Completado == 1 ? "Sí" : "No";
 
         // relaciones
         // public Cliente Cliente { get; set; }
