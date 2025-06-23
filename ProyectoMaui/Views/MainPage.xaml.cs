@@ -22,4 +22,7 @@ public partial class MainPage : ContentPage
 
     private async void OnProveedoresClicked(object sender, EventArgs e)
         => await Shell.Current.GoToAsync("proveedores");
+    
+    private async void OnReportesClicked(object sender, EventArgs e)
+        => await Shell.Current.GoToAsync("reportes");
 }
