@@ -3,12 +3,38 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:ProyectoMaui.Views"
              x:Class="ProyectoMaui.Views.PedidosView"
-             BackgroundColor="#82C2FF"
-             Title="PedidosView">
-    <ScrollView>
-        <VerticalStackLayout Padding="30" Spacing="20" HorizontalOptions="Center" VerticalOptions="Center">
-            <views:EncabezadoView />
-            <Label Text="Gestion de Pedidos" FontSize="28" FontFamily="AileronBold" TextColor="Black" HorizontalOptions="Center"/>
-        </VerticalStackLayout>
-    </ScrollView>
+             BackgroundColor="#FBF0FF">
+
+    <VerticalStackLayout Padding="30" Spacing="20">
+
+        <views:EncabezadoView />
+
+        <!-- TÍTULO -->
+        <Label Text="Pedidos"
+               FontSize="24"
+               FontAttributes="Bold"
+               TextColor="Black" /> 
+
+        <!-- LISTA DE PEDIDOS -->
+        <CollectionView ItemsSource="{Binding Pedidos}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BackgroundColor="White"
+                           BorderColor="#DDD"
+                           CornerRadius="12"
+                           Padding="10"
+                           Margin="0,5">
+                        <VerticalStackLayout Spacing="5">
+                            <Label Text="{Binding Id, StringFormat='ID: {0}'}" FontAttributes="Bold" />
+                            <Label Text="{Binding Fecha, StringFormat='Fecha: {0:dd/MM/yyyy HH:mm}'}" />
+                            <Label Text="{Binding CompletadoTexto, StringFormat='Completado: {0}'}" />
+                            <Label Text="{Binding UsuarioId, StringFormat='Usuario: {0}'}" />
+                            <Label Text="{Binding PlatilloId, StringFormat='Platillo: {0}'}" />
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </VerticalStackLayout>
 </ContentPage>

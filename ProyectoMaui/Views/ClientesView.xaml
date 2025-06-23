@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:ProyectoMaui.Views"
              x:Class="ProyectoMaui.Views.ClientesView"
-
-             Title="ClientesView">
+             BackgroundColor="#FBF0FF"
+>
     <ScrollView>
         <VerticalStackLayout Padding="30" Spacing="20" HorizontalOptions="Center">
 

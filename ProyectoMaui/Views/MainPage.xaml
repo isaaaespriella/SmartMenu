@@ -1,26 +1,116 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:views1="clr-namespace:ProyectoMaui.Views"
+             xmlns:view="clr-namespace:ProyectoMaui.Views"
              x:Class="ProyectoMaui.Views.MainPage"
-
-             Title="Inicio">
+             BackgroundColor="#FBF0FF">
 
     <ScrollView>
-        <VerticalStackLayout Padding="30" Spacing="18" HorizontalOptions="Center" VerticalOptions="Center">
+        <Grid Padding="0" RowSpacing="0">
 
-            <views1:EncabezadoView />
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-            <Label Text="Smart Menu" Style="{StaticResource TitleLabel}" />
+            <!-- Encabezado -->
+            <view:EncabezadoView Grid.Row="0" Margin="0,10,0,10"/>
 
-            <Grid ColumnDefinitions="*, *" RowDefinitions="Auto, Auto, Auto">
-                <Button Text="Menú" Clicked="OnMenuClicked" Style="{StaticResource PrimaryButton}" Grid.Row="0" Grid.Column="0" />
-                <Button Text="Pedidos" Clicked="OnPedidosClicked" Style="{StaticResource PrimaryButton}" Grid.Row="0" Grid.Column="1" />
-                <Button Text="Clientes" Clicked="OnClientesClicked" Style="{StaticResource PrimaryButton}" Grid.Row="1" Grid.Column="0" />
-                <Button Text="Inventario" Clicked="OnInventarioClicked" Style="{StaticResource PrimaryButton}" Grid.Row="1" Grid.Column="1" />
-                <Button Text="Proveedores" Clicked="OnProveedoresClicked" Style="{StaticResource PrimaryButton}" Grid.Row="2" Grid.Column="0" />
-              </Grid>
+            <!-- Contenido -->
+            <VerticalStackLayout Grid.Row="1"
+                                 Padding="30"
+                                 Spacing="30"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Start">
 
-        </VerticalStackLayout>
+                <Grid ColumnDefinitions="*,*"
+                      RowDefinitions="Auto,Auto,Auto"
+                      RowSpacing="40"
+                      ColumnSpacing="40">
+
+                    <!-- Menú -->
+                    <Frame Grid.Row="0" Grid.Column="0"
+                           BackgroundColor="White"
+                           CornerRadius="12"
+                           HeightRequest="140"
+                           WidthRequest="140"
+                           HasShadow="True">
+                        <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                            <Image Source="menu.png" HeightRequest="70" Margin="0,0,0,10"/>
+                            <Label Text="Menú" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnMenuClicked"/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
+
+                    <!-- Pedidos -->
+                    <Frame Grid.Row="0" Grid.Column="1"
+                           BackgroundColor="White"
+                           CornerRadius="12"
+                           HeightRequest="140"
+                           WidthRequest="140"
+                           HasShadow="True">
+                        <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                            <Image Source="pedidos.png" HeightRequest="70" Margin="0,0,0,10" />
+                            <Label Text="Pedidos" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnPedidosClicked"/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
+
+                    <!-- Clientes -->
+                    <Frame Grid.Row="1" Grid.Column="0"
+                           BackgroundColor="White"
+                           CornerRadius="12"
+                           HeightRequest="140"
+                           WidthRequest="140"
+                           HasShadow="True">
+                        <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                            <Image Source="clientes.png" HeightRequest="70" Margin="0,0,0,10" />
+                            <Label Text="Clientes" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnClientesClicked"/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
+
+                    <!-- Inventario -->
+                    <Frame Grid.Row="1" Grid.Column="1"
+                           BackgroundColor="White"
+                           CornerRadius="12"
+                           HeightRequest="140"
+                           WidthRequest="140"
+                           HasShadow="True">
+                        <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                            <Image Source="inventario.png" HeightRequest="70" Margin="0,0,0,10" />
+                            <Label Text="Inventario" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnInventarioClicked"/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
+
+                    <!-- Proveedores -->
+                    <Frame Grid.Row="2" Grid.Column="0"
+                           BackgroundColor="White"
+                           CornerRadius="12"
+                           HeightRequest="140"
+                           WidthRequest="140"
+                           HasShadow="True">
+                        <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                            <Image Source="proveedores.png" HeightRequest="70" Margin="0,0,0,10" />
+                            <Label Text="Proveedores" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnProveedoresClicked"/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
+
+                </Grid>
+
+            </VerticalStackLayout>
+        </Grid>
     </ScrollView>
 </ContentPage>
