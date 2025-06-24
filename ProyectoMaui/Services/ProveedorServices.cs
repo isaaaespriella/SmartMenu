@@ -1,29 +1,25 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Net.Http.Headers;
 using Newtonsoft.Json;
 using System.Buffers.Text;
 using ProyectoMaui.Models;
+using System.Net.Http.Json;
 
 namespace ProyectoMaui.Services
 {
     public class ProveedorServices
     {
         private readonly HttpClient _httpClient;
-        private const string BaseUrl = "https://342d-177-245-248-9.ngrok-free.app/";
+        private const string BaseUrl = "https://b8c8-177-245-253-133.ngrok-free.app/";
         //admin@techstore.com
         //admin123
 
         public ProveedorServices()
         {
             _httpClient = new HttpClient();
-            _httpClient.DefaultRequestHeaders.Accept.Add(
-                new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json")
-                );
+            _httpClient.BaseAddress = new Uri("https://b8c8-177-245-253-133.ngrok-free.app/");
+
         }
+        
+        /*
 
         public async Task<List<Proveedor>> GetProveedores()
         {
@@ -109,6 +105,34 @@ namespace ProyectoMaui.Services
             {
                 Console.WriteLine($"Error en PutProveedor: {ex.Message}");
                 throw;
+            }
+        }*/
+        
+        public async Task<List<Proveedor>> ObtenerProveedoresAsync()
+        {
+            return await _httpClient.GetFromJsonAsync<List<Proveedor>>("api/proveedores")
+                   ?? new List<Proveedor>();
+        }
+
+        public async Task<bool> CrearProveedorAsync(Proveedor proveedor)
+        {
+            try
+            {
+                var response = await _httpClient.PostAsJsonAsync("api/proveedores", new
+                {
+                    proveedor.Nombre,
+                    proveedor.Telefono,
+                    proveedor.Servicio
+                });
+
+                var content = await response.Content.ReadAsStringAsync();
+                Console.WriteLine($"RESPUESTA POST: {content}");
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"ERROR EN POST: {ex.Message}");
+                return false;
             }
         }
 
