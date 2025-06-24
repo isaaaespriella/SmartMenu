@@ -13,7 +13,7 @@ public class ClientesService
     {
         _httpClient = new HttpClient
         {
-            BaseAddress = new Uri("https://342d-177-245-248-9.ngrok-free.app/api/")
+            BaseAddress = new Uri("https://b8c8-177-245-253-133.ngrok-free.app/api/")
         };
     }
 
@@ -37,24 +37,25 @@ public class ClientesService
         }
     }
 
-    public async Task<Usuario?> ObtenerClientePorIdAsync(int id)
+    public async Task<List<Pedido>?> ObtenerPedidosPorClienteIdAsync(int clienteId)
     {
         try
         {
-            var response = await _httpClient.GetAsync($"usuarios/cliente/{id}");
+            var response = await _httpClient.GetAsync($"pedidos/cliente/{clienteId}");
             if (response.IsSuccessStatusCode)
             {
                 var json = await response.Content.ReadAsStringAsync();
-                return JsonSerializer.Deserialize<Usuario>(json);
+                return JsonSerializer.Deserialize<List<Pedido>>(json);
             }
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error al obtener cliente: {ex.Message}");
+            Console.WriteLine($"Error al obtener pedidos del cliente: {ex.Message}");
         }
 
         return null;
     }
+
     public async Task<List<Usuario>?> ObtenerTodosLosClientesAsync()
     {
         try

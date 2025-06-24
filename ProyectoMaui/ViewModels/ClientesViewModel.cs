@@ -1,3 +1,4 @@
+using System.Collections.ObjectModel;
 using ProyectoMaui.Models;
 using ProyectoMaui.Services;
 using System.ComponentModel;
@@ -13,22 +14,34 @@ public class ClientesViewModel : INotifyPropertyChanged
     public Usuario NuevoCliente { get; set; } = new();
     public Usuario ClienteEncontrado { get; set; } = new();
 
-    public string ClienteIdBuscar { get; set; }
+    private string _clienteIdBuscar;
+    public string ClienteIdBuscar
+    {
+        get => _clienteIdBuscar;
+        set
+        {
+            if (_clienteIdBuscar != value)
+            {
+                _clienteIdBuscar = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
+    public ObservableCollection<Pedido> HistorialPedidos { get; set; } = new();
 
     public ICommand RegistrarCommand { get; }
     public ICommand BuscarCommand { get; }
-    
-    public List<Usuario> Clientes { get; set; } = new();
-
+    public ICommand BuscarHistorialPedidosCommand { get; }
     public ICommand CargarTodosCommand { get; }
 
+    public List<Usuario> Clientes { get; set; } = new();
 
     public ClientesViewModel()
     {
         RegistrarCommand = new Command(async () => await RegistrarClienteAsync());
-        BuscarCommand = new Command(async () => await BuscarClienteAsync());
+        BuscarHistorialPedidosCommand = new Command(async () => await BuscarHistorialPedidosAsync());
         CargarTodosCommand = new Command(async () => await CargarTodosClientesAsync());
-
     }
 
     public async Task RegistrarClienteAsync()
@@ -47,19 +60,20 @@ public class ClientesViewModel : INotifyPropertyChanged
         }
     }
 
-    public async Task BuscarClienteAsync()
+    public async Task BuscarHistorialPedidosAsync()
     {
         if (int.TryParse(ClienteIdBuscar, out int id))
         {
-            var cliente = await _clientesService.ObtenerClientePorIdAsync(id);
-            if (cliente != null)
+            var pedidos = await _clientesService.ObtenerPedidosPorClienteIdAsync(id);
+            if (pedidos != null)
             {
-                ClienteEncontrado = cliente;
-                OnPropertyChanged(nameof(ClienteEncontrado));
+                HistorialPedidos.Clear();
+                foreach (var pedido in pedidos)
+                    HistorialPedidos.Add(pedido);
             }
             else
             {
-                await Application.Current.MainPage.DisplayAlert("No encontrado", "No se encontró el cliente", "OK");
+                await Application.Current.MainPage.DisplayAlert("No encontrado", "No se encontraron pedidos para el cliente", "OK");
             }
         }
         else
@@ -67,6 +81,7 @@ public class ClientesViewModel : INotifyPropertyChanged
             await Application.Current.MainPage.DisplayAlert("Error", "ID inválido", "OK");
         }
     }
+
     public async Task CargarTodosClientesAsync()
     {
         var clientes = await _clientesService.ObtenerTodosLosClientesAsync();

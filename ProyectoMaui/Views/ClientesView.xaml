@@ -1,76 +1,214 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:views="clr-namespace:ProyectoMaui.Views"
-             xmlns:viewModels="clr-namespace:ProyectoMaui.ViewModels"
-             x:Class="ProyectoMaui.Views.ClientesView"
-             BackgroundColor="#FBF0FF">
-<ScrollView>
-
-       <VerticalStackLayout Padding="30" Spacing="20">
-
-        <!-- Encabezado personalizado -->
-        <views:EncabezadoView />
-
-        <!-- TÍTULO -->
-        <Label Text="Clientes"
-               FontSize="24"
-               FontAttributes="Bold"
-               TextColor="Black" />
-
-                <Entry Placeholder="Nombre"
-                       Text="{Binding NuevoCliente.Nombre}" />
-
-                <Entry Placeholder="Usuario"
-                       Text="{Binding NuevoCliente.NombreUsuario}" />
-
-                <Entry Placeholder="Contraseña"
-                       Text="{Binding NuevoCliente.Contrasena}"
-                       IsPassword="True" />
-
-                <Entry Placeholder="Teléfono"
-                       Text="{Binding NuevoCliente.Telefono}" />
-
-                <Entry Placeholder="Correo electrónico"
-                       Text="{Binding NuevoCliente.Email}" />
-
-                <Button Text="Registrar Cliente"
-                        Command="{Binding RegistrarCommand}" />
-        <Button Text="Cargar Todos los Clientes"
-                Command="{Binding CargarTodosCommand}" />
-
-        <CollectionView ItemsSource="{Binding Clientes}"
-                        Margin="0,20,0,0">
-               <CollectionView.ItemTemplate>
-                      <DataTemplate>
-                             <Frame BorderColor="#CCC"
-                                    BackgroundColor="White"
-                                    Padding="10"
-                                    Margin="0,5">
-                                    <VerticalStackLayout Spacing="5">
-                                           <Label Text="{Binding Nombre, StringFormat='Nombre: {0}'}" />
-                                           <Label Text="{Binding NombreUsuario, StringFormat='Usuario: {0}'}" />
-                                           <Label Text="{Binding Email, StringFormat='Email: {0}'}" />
-                                    </VerticalStackLayout>
-                             </Frame>
-                      </DataTemplate>
-               </CollectionView.ItemTemplate>
-        </CollectionView>
-           
-        <Entry Placeholder="ID de cliente"
-               Text="{Binding ClienteIdBuscar}" />
-
-        <Button Text="Buscar Cliente"
-                Command="{Binding BuscarCommand}" />
-
-        <!-- Mostrar los datos encontrados -->
-        <Label Text="Resultado del GET:"
-               FontAttributes="Bold"
-               Margin="0,10,0,0" />
-
-        <Label Text="{Binding ClienteEncontrado.Nombre, StringFormat='Nombre: {0}'}" />
-        <Label Text="{Binding ClienteEncontrado.Email, StringFormat='Email: {0}'}" />
-        <Label Text="{Binding ClienteEncontrado.Telefono, StringFormat='Teléfono: {0}'}" />
-    </VerticalStackLayout>
-</ScrollView>
-</ContentPage>
+<?xml version="1.0" encoding="utf-8"?>
+              
+              <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                           xmlns:views="clr-namespace:ProyectoMaui.Views"
+                           xmlns:viewModels="clr-namespace:ProyectoMaui.ViewModels"
+                           x:Class="ProyectoMaui.Views.ClientesView"
+                           BackgroundColor="#FBF0FF">
+                  <Grid>
+                      <ScrollView>
+                          <Grid>
+                              <VerticalStackLayout VerticalOptions="CenterAndExpand"
+                                                   HorizontalOptions="Center"
+                                                   Padding="15"
+                                                   Spacing="15">
+              
+                                  <views:EncabezadoView />
+              
+                                  <!-- TÍTULO -->
+                                  <Label Text="Clientes"
+                                         FontSize="24"
+                                         FontAttributes="Bold"
+                                         TextColor="Black"
+                                         VerticalOptions="CenterAndExpand"
+                                         HorizontalOptions="Center"/>
+              
+                                  <Label Text="Registrar cliente"
+                                         FontSize="19"
+                                         HorizontalOptions="Center"
+                                         FontAttributes="Bold"
+                                         TextColor="Black" />
+                                  
+                                  <!-- NOMBRE -->
+                                  <VerticalStackLayout Spacing="5">
+                                      <Label Text="Nombre:" FontFamily="OpenSansSemibold" FontSize="15" TextColor="Black" Margin="5,0,0,0"
+                                             HorizontalOptions="Center"
+                                             WidthRequest="340"
+                                             Padding="15,0,0,0"/>
+                                      <Border Style="{StaticResource OvalBorderStyle}" Padding="15,0">
+                                          <Entry Style="{StaticResource OvalEntryStyle}" 
+                                                 BackgroundColor="Transparent"
+                                                 Placeholder="Eusebio Lopez" 
+                                                 HorizontalOptions="FillAndExpand" 
+                                                 Text="{Binding NuevoCliente.Nombre}" />
+                                      </Border>
+                                  </VerticalStackLayout>
+              
+                                  <!-- TELEFONO -->
+                                  <VerticalStackLayout Spacing="5">
+                                      <Label Text="Teléfono:" FontFamily="OpenSansSemibold" FontSize="15" TextColor="Black" Margin="5,0,0,0"
+                                             HorizontalOptions="Center"
+                                             WidthRequest="340"
+                                             Padding="15,0,0,0"/>
+                                      <Border Style="{StaticResource OvalBorderStyle}" Padding="15,0">
+                                          <Entry Style="{StaticResource OvalEntryStyle}" 
+                                                 BackgroundColor="Transparent"
+                                                 Placeholder="1234567890" 
+                                                 HorizontalOptions="FillAndExpand"
+                                                 Text="{Binding NuevoCliente.Telefono}"
+                                                  />
+                                      </Border>
+                                  </VerticalStackLayout>
+              
+                                  <!-- EMAIL -->
+                                  <VerticalStackLayout Spacing="5">
+                                      <Label Text="Email:" FontFamily="OpenSansSemibold" FontSize="15" TextColor="Black" Margin="5,0,0,0"
+                                             HorizontalOptions="Center"
+                                             WidthRequest="340"
+                                             Padding="15,0,0,0"
+                                             />
+                                      <Border Style="{StaticResource OvalBorderStyle}" Padding="15,0">
+                                          <Entry Style="{StaticResource OvalEntryStyle}" 
+                                                 BackgroundColor="Transparent"
+                                                 Placeholder="eusebio@gmail.com" 
+                                                 HorizontalOptions="FillAndExpand"  
+                                                 Text="{Binding NuevoCliente.Email}"
+                                                 />
+                                      </Border>
+                                  </VerticalStackLayout>
+              
+                                  <!-- BUTTON -->
+                                  <Button Text="Registrar Cliente"
+                                          BackgroundColor="#451C54"
+                                          TextColor="White"
+                                          FontFamily="OpenSansSemibold"
+                                          FontSize="15"
+                                          CornerRadius="10"
+                                          HeightRequest="50"
+                                          Command="{Binding RegistrarCommand}" />
+                                  
+                                  <!-- GET BY ID -->
+                                  <Label Text="Consultar pedidos del cliente"
+                                         FontSize="19"
+                                         HorizontalOptions="Center"
+                                         FontAttributes="Bold"
+                                         TextColor="Black" />
+                                  <VerticalStackLayout Spacing="5">
+                                      <Label Text="Ingresa el número del cliente:" FontFamily="OpenSansSemibold" FontSize="15" TextColor="Black" Margin="5,0,0,0"
+                                             HorizontalOptions="Center"
+                                             WidthRequest="340"
+                                             Padding="15,0,0,0"/>
+                                      <Border Style="{StaticResource OvalBorderStyle}" Padding="15,0">
+                                          <Entry Style="{StaticResource OvalEntryStyle}" 
+                                                 BackgroundColor="Transparent"
+                                                 Placeholder="1" 
+                                                 HorizontalOptions="FillAndExpand"
+                                                 Text="{Binding ClienteIdBuscar}" />
+                                      </Border>
+                                  </VerticalStackLayout>
+              
+                                  <Button
+                                      BackgroundColor="#451C54"
+                                      TextColor="White"
+                                      FontFamily="OpenSansSemibold"
+                                      FontSize="15"
+                                      CornerRadius="10"
+                                      HeightRequest="50"
+                                      Text="Mostrar Pedido"
+                                      Command="{Binding BuscarHistorialPedidosCommand}" />
+                                  
+                                  <CollectionView ItemsSource="{Binding HistorialPedidos}">
+                                      <CollectionView.ItemTemplate>
+                                          <DataTemplate>
+                                              <Frame BackgroundColor="White"
+                                                     BorderColor="Transparent"
+                                                     CornerRadius="12"
+                                                     Padding="10"
+                                                     Margin="0,10">
+                                                  <VerticalStackLayout Spacing="5">
+                                                      <Label Text="{Binding Id, StringFormat='ID de Pedido: {0}'}"
+                                                             FontFamily="OpenSansSemibold"
+                                                             FontSize="15"
+                                                             TextColor="Black" 
+                                                             Margin="5,0,0,0"/>
+                                                      <Label Text="{Binding Fecha, StringFormat='Fecha: {0:dd/MM/yyyy HH:mm}'}"
+                                                             FontFamily="OpenSans"
+                                                             FontSize="15"
+                                                             TextColor="Black"
+                                                             Margin="5,0,0,0"/>
+                                                      <Label Text="{Binding CompletadoTexto, StringFormat='Completado: {0}'}"
+                                                             FontFamily="OpenSans"
+                                                             FontSize="15"
+                                                             TextColor="Black"
+                                                             Margin="5,0,0,0"/>
+                                                      <Label Text="{Binding PlatilloId, StringFormat='ID Platillo: {0}'}"
+                                                             FontFamily="OpenSans"
+                                                             FontSize="15"
+                                                             TextColor="Black"
+                                                             Margin="5,0,0,0"/>
+                                                  </VerticalStackLayout>
+                                              </Frame>
+                                          </DataTemplate>
+                                      </CollectionView.ItemTemplate>
+                                  </CollectionView>
+                                  
+                                  <!-- GET ALL -->
+                                  <Label Text="Ver todos los clientes"
+                                         FontSize="19"
+                                         HorizontalOptions="Center"
+                                         FontAttributes="Bold"
+                                         TextColor="Black" />
+                                  
+                                  <Button Text="Mostrar Clientes"
+                                          BackgroundColor="#451C54"
+                                          TextColor="White"
+                                          FontFamily="OpenSansSemibold"
+                                          FontSize="15"
+                                          CornerRadius="10"
+                                          HeightRequest="50"
+                                          Command="{Binding CargarTodosCommand}" />
+              
+                                  <CollectionView ItemsSource="{Binding Clientes}"
+                                                  Margin="0,0,0,0">
+              
+                                      <CollectionView.ItemTemplate>
+                                          <DataTemplate>
+                                              <Frame BackgroundColor="White"
+                                                            BorderColor="Transparent"
+                                                            CornerRadius="12"
+                                                            Padding="10"
+                                                            Margin="0,10">
+                                                  <VerticalStackLayout Spacing="5">
+                                                      <Label Text="{Binding Id, StringFormat='ID de Cliente: {0}'}" 
+                                                             FontFamily="OpenSansSemibold" 
+                                                             FontSize="15" 
+                                                             TextColor="Black" 
+                                                             Margin="5,0,0,0" />
+                                                      <Label Text="{Binding Nombre, StringFormat='Nombre: {0}'}" 
+                                                             FontFamily="OpenSans" 
+                                                             FontSize="15" 
+                                                             TextColor="Black" 
+                                                             Margin="5,0,0,0" />
+                                                      <Label Text="{Binding Telefono, StringFormat='Telefono: {0}'}"
+                                                             FontFamily="OpenSans" 
+                                                             FontSize="15" 
+                                                             TextColor="Black" 
+                                                             Margin="5,0,0,0" />
+                                                      <Label Text="{Binding Email, StringFormat='Email: {0}'}" 
+                                                             FontFamily="OpenSans" 
+                                                             FontSize="15" 
+                                                             TextColor="Black" 
+                                                             Margin="5,0,0,0" />
+                                                  </VerticalStackLayout>
+                                              </Frame>
+                                          </DataTemplate>
+                                      </CollectionView.ItemTemplate>
+                                  </CollectionView>
+                                  
+                                  
+                              </VerticalStackLayout>
+                          </Grid>
+                      </ScrollView>
+                  </Grid>
+              </ContentPage>

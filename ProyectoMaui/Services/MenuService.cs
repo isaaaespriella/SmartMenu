@@ -10,7 +10,7 @@ namespace ProyectoMaui.Services
         public MenuService()
         {
             _httpClient = new HttpClient();
-            _httpClient.BaseAddress = new Uri("https://342d-177-245-248-9.ngrok-free.app/"); // Usa tu URL
+            _httpClient.BaseAddress = new Uri("https://b8c8-177-245-253-133.ngrok-free.app/"); // Usa tu URL
         }
 
         public async Task<List<Menu>> ObtenerPlatillosAsync()

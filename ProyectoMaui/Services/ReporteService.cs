@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace ProyectoMaui.Services
@@ -15,7 +17,7 @@ namespace ProyectoMaui.Services
         {
             _httpClient = new HttpClient
             {
-                BaseAddress = new Uri("https://tudominio.com/api/") // <-- CAMBIA ESTA RUTA
+                BaseAddress = new Uri("https://b8c8-177-245-253-133.ngrok-free.app/api/")
             };
         }
 
@@ -23,7 +25,7 @@ namespace ProyectoMaui.Services
         {
             try
             {
-                var response = await _httpClient.GetAsync("reportes"); // <-- CAMBIA A TU ENDPOINT REAL
+                var response = await _httpClient.GetAsync("reportes");
                 response.EnsureSuccessStatusCode();
                 return await response.Content.ReadFromJsonAsync<List<Reportes>>();
             }
@@ -33,5 +35,21 @@ namespace ProyectoMaui.Services
                 return new List<Reportes>();
             }
         }
+
+        public async Task<bool> AgregarReporteAsync(Reportes nuevo)
+        {
+            try
+            {
+                var json = JsonSerializer.Serialize(nuevo);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await _httpClient.PostAsync("reportes", content);
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al agregar reporte: {ex.Message}");
+                return false;
+            }
+        }
     }
-}
+} 

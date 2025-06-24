@@ -10,7 +10,7 @@ public class InventarioService
     public InventarioService()
     {
         _httpClient = new HttpClient();
-        _httpClient.BaseAddress = new Uri("https://342d-177-245-248-9.ngrok-free.app/");
+        _httpClient.BaseAddress = new Uri("https://b8c8-177-245-253-133.ngrok-free.app/");
     }
 
     public async Task<List<Inventario>> ObtenerInventarioAsync()

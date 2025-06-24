@@ -70,8 +70,8 @@
                             </VerticalStackLayout>
                             
                             <!-- Botón Signup -->
-                            <Button Text="Registrate"
-                                    BackgroundColor="#DEFFFC"
+                            <Button Text="Registrarme"
+                                    BackgroundColor="#451C54"
                                     TextColor="White"
                                     FontFamily="OpenSansSemibold" 
                                     FontSize="15"
@@ -80,9 +80,10 @@
                                     Clicked="OnSignupClicked"
                                     />
                             
-                            <Button Text="Regresar al Login"
-                                    BackgroundColor="#451C54"
-                                    TextColor="White"
+                            <Button Text="Inicia Sesión"
+                                    BackgroundColor="Transparent"
+                                    TextColor="Black"
+                                    BorderColor="Black"
                                     FontFamily="OpenSansSemibold" 
                                     FontSize="15"
                                     CornerRadius="10"
