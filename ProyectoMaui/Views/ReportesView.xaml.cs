@@ -5,9 +5,13 @@ namespace ProyectoMaui.Views
 {
     public partial class ReportesView : ContentPage
     {
+        private readonly ReportesViewModel vm;
+
         public ReportesView()
         {
             InitializeComponent();
+            vm = new ReportesViewModel();
+            BindingContext = vm;
         }
 
         private async void OnAgregarReporte(object sender, EventArgs e)
@@ -16,14 +20,21 @@ namespace ProyectoMaui.Views
             string total = await DisplayPromptAsync("Total", "Introduce el total de la venta:");
             string responsable = await DisplayPromptAsync("Responsable", "Introduce el nombre del responsable:");
 
-            if (BindingContext is ReportesViewModel vm)
+            if (!string.IsNullOrWhiteSpace(fecha) &&
+                !string.IsNullOrWhiteSpace(total) &&
+                !string.IsNullOrWhiteSpace(responsable))
             {
                 vm.NuevaFecha = fecha;
                 vm.NuevoTotal = total;
                 vm.NuevoResponsable = responsable;
-                await vm.AgregarReporteDesdeVista(); 
+                await vm.AgregarReporte();
+            }
+            else
+            {
+                await DisplayAlert("Error", "Todos los campos son obligatorios", "OK");
             }
         }
     }
 }
+
 

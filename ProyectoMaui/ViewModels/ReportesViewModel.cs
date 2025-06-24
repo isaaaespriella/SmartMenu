@@ -13,7 +13,6 @@ namespace ProyectoMaui.ViewModels
     public class ReportesViewModel : INotifyPropertyChanged
     {
         private readonly ReporteService _reporteService = new();
-
         public ObservableCollection<Reportes> Reportes { get; set; } = new();
         public ObservableCollection<Reportes> ReportesFiltrados { get; set; } = new();
 
@@ -37,7 +36,6 @@ namespace ProyectoMaui.ViewModels
         }
 
         public ICommand EliminarCommand => new Command<Reportes>(EliminarReporte);
-        public ICommand AgregarCommand => new Command(async () => await AgregarReporte());
 
         public ReportesViewModel()
         {
@@ -54,8 +52,13 @@ namespace ProyectoMaui.ViewModels
             FiltrarReportes();
         }
 
-        private async Task AgregarReporte()
+        public async Task AgregarReporte()
         {
+            if (string.IsNullOrWhiteSpace(NuevaFecha) ||
+                string.IsNullOrWhiteSpace(NuevoTotal) ||
+                string.IsNullOrWhiteSpace(NuevoResponsable))
+                return;
+
             var nuevo = new Reportes
             {
                 Fecha = NuevaFecha,
@@ -69,11 +72,6 @@ namespace ProyectoMaui.ViewModels
                 Reportes.Add(nuevo);
                 FiltrarReportes();
             }
-        }
-
-        public async Task AgregarReporteDesdeVista()
-        {
-            await AgregarReporte();
         }
 
         private void FiltrarReportes()
@@ -99,3 +97,4 @@ namespace ProyectoMaui.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nombre));
     }
 }
+
