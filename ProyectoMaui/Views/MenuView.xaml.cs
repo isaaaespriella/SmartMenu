@@ -11,6 +11,7 @@ public partial class MenuView : ContentPage
         InitializeComponent();
         viewModel = new MenuViewModel();
         BindingContext = viewModel;
+        Shell.SetNavBarIsVisible(this, false);
     }
 
     protected override async void OnAppearing()

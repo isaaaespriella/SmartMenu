@@ -13,7 +13,9 @@
         <Label Text="Menú de Platillos"
                FontSize="24"
                FontAttributes="Bold"
-               TextColor="Black" /> 
+               TextColor="Black"
+               VerticalOptions="CenterAndExpand"
+               HorizontalOptions="Center"/> 
 
         <!-- LISTA DE PLATILLOS -->
         <CollectionView ItemsSource="{Binding Platillos}">
