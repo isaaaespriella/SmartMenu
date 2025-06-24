@@ -25,11 +25,15 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <SwipeView>
-                            <SwipeView.RightItems>
+                            <SwipeView.LeftItems>
                                 <SwipeItems Mode="Execute">
                                     <SwipeItem Text="Editar"
                                                BackgroundColor="#FF9800"
                                                Invoked="OnEditarInvoked" />
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
+                            <SwipeView.RightItems>
+                                <SwipeItems Mode="Execute">
                                     <SwipeItem Text="Eliminar"
                                                BackgroundColor="#F44336"
                                                Invoked="OnEliminarInvoked" />

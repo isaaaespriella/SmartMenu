@@ -37,18 +37,6 @@ public class InventarioViewModel : INotifyPropertyChanged
         }
     }
     
-    // public async Task PruebaAgregarNuevo()
-    // {
-    //     var nuevo = new Inventario { Ingrediente = "Sal", Stock = 20 };
-    //
-    //     bool exito = await _inventarioService.AgregarInventarioAsync(nuevo);
-    //
-    //     if (exito)
-    //     {
-    //         await ObtenerInventarioAsync(); // Recargar datos
-    //     }
-    // }
-
     public async Task<bool> AgregarInventarioAsync(Inventario nuevo)
     {
         return await _inventarioService.AgregarInventarioAsync(nuevo);

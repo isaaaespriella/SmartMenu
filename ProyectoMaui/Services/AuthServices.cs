@@ -15,7 +15,7 @@ namespace Proyecto.Services
     public class AuthServices
     {
         private readonly HttpClient _httpClient;
-        private const string BaseUrl = "https://localhost:44324/api";
+        private const string BaseUrl = "https://b8c8-177-245-253-133.ngrok-free.app/";
         //admin@techstore.com
         //admin123
 
