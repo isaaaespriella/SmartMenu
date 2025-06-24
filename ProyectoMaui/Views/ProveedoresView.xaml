@@ -32,7 +32,8 @@
                     Placeholder="Ingrese la descripcion del servicio" 
                     VerticalOptions="Center" />
 
-            <Button Text="Agregar Proveedor" 
+            <Button Text="Agregar Proveedor"
+                Clicked="AgregarClicked"
                 HorizontalOptions="Center" 
                 VerticalOptions="Center" 
                 BackgroundColor="#007AFF" 
