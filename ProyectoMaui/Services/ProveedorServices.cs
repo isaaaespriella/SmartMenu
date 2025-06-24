@@ -136,6 +136,23 @@ namespace ProyectoMaui.Services
             }
         }
 
+        public async Task<bool> DeleteProveedorAsync(int id)
+        {
+            try
+            {
+                var response = await _httpClient.DeleteAsync($"api/proveedores/{id}");
+                
+                var content = await response.Content.ReadAsStringAsync();
+                Console.WriteLine($"RESPUESTA DELETE: {content}");
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"ERROR EN DELETE: {ex.Message}");
+                return false; 
+            }
+        }
+
         public async Task<bool> DeleteProveedor(int id)
         {
             try

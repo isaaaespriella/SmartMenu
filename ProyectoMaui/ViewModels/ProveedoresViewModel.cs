@@ -66,6 +66,35 @@ namespace ProyectoMaui.ViewModels
             }
         }
 
+        public async Task DeleteProveedorAsync(int id)
+        {
+            try
+            {
+                var confirmado = await Application.Current.MainPage.DisplayAlert(
+                    "Confirmar",
+                    $"¿Estás seguro de eliminar al proveedor con ID {id}?",
+                    "Sí", "No");
+
+                if (!confirmado)
+                    return;
+
+                var exito = await _proveedorService.DeleteProveedorAsync(id);
+
+                if (exito)
+                {
+                    var proveedor = Proveedores.FirstOrDefault(p => p.Id == id);
+                    if (proveedor != null)
+                        Proveedores.Remove(proveedor);
+
+                    await Application.Current.MainPage.DisplayAlert("Éxito", "Proveedor eliminado", "OK");
+                }
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged([CallerMemberName] string name = null)

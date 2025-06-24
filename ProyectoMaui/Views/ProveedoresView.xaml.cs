@@ -42,6 +42,19 @@ public partial class ProveedoresView : ContentPage
         }
     }
 
+    private async void OnDeleteProveedorClicked(object sender, EventArgs e)
+    {
+        if (int.TryParse(idEntry.Text, out int id))
+        {
+            await viewModel.DeleteProveedorAsync(id);
+            idEntry.Text = string.Empty;
+        }
+        else
+        {
+            await DisplayAlert("Error", "Debes ingresar IDs válidos", "OK");
+        }
+    }
+
     /*
     //se eliminan al v
     private async void EliminarClicked(object sender, EventArgs e)
