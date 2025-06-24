@@ -6,12 +6,73 @@
              BackgroundColor="#FBF0FF"
 >
     <ScrollView>
-        <VerticalStackLayout Padding="30" Spacing="20" HorizontalOptions="Center">
+        <VerticalStackLayout Padding="20" Spacing="20">
 
             <views:EncabezadoView />
 
-            <Label Text="Inventario" Style="{StaticResource TitleLabel}" />
+            <Label Text="Inventario"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   TextColor="Black"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="Center"/>
 
+            <CollectionView ItemsSource="{Binding Inventario}" SelectionChanged="OnItemSelected">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <SwipeView>
+                            <SwipeView.LeftItems>
+                                <SwipeItems Mode="Execute">
+                                    <SwipeItem Text="Editar"
+                                               BackgroundColor="#FF9800"
+                                               Invoked="OnEditarInvoked" />
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
+                            <SwipeView.RightItems>
+                                <SwipeItems Mode="Execute">
+                                    <SwipeItem Text="Eliminar"
+                                               BackgroundColor="#F44336"
+                                               Invoked="OnEliminarInvoked" />
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+
+                            <Frame BackgroundColor="White"
+                                   BorderColor="Transparent"
+                                   CornerRadius="16"
+                                   Padding="15"
+                                   Margin="0,5"
+                                   HasShadow="True">
+                                <Grid ColumnDefinitions="*, Auto"
+                                      RowDefinitions="Auto, Auto, Auto"
+                                      ColumnSpacing="10">
+                                    <VerticalStackLayout Grid.Column="0" Spacing="4">
+                                        <Label Text="{Binding Ingrediente}"
+                                               FontAttributes="Bold"
+                                               FontSize="18"
+                                               TextColor="#333" />
+                                        <Label Text="{Binding Stock, StringFormat='Stock: {0}'}"
+                                               FontSize="14"
+                                               TextColor="#555" />
+                                        <Label Text="{Binding Id, StringFormat='ID: {0}'}"
+                                               FontSize="12"
+                                               TextColor="#888" />
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Frame>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Button Text="Agregar Insumo"
+                    Clicked="OnAgregarInsumo"
+                    BackgroundColor="#451C54"
+                    TextColor="White"
+                    FontFamily="OpenSansSemibold"
+                    FontSize="15"
+                    CornerRadius="10"
+                    HeightRequest="50"
+                    Margin="0,20,0,0" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

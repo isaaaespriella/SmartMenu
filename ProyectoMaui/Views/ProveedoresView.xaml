@@ -1,15 +1,56 @@
-<?xml version="1.0" encoding="utf-8"?>
-
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:ProyectoMaui.Views"
              x:Class="ProyectoMaui.Views.ProveedoresView"
              BackgroundColor="#82C2FF"
-             Title="Proveedores">
-    <ScrollView>
-        <VerticalStackLayout Padding="30" Spacing="20" HorizontalOptions="Center" VerticalOptions="Center">
-            <views:EncabezadoView />
-            <Label Text="Lista de Proveedores" FontSize="28" FontFamily="AileronBold" TextColor="Black" HorizontalOptions="Center"/>
+             Title="ProveedoresView">
+    <VerticalStackLayout Padding="30" Spacing="20" HorizontalOptions="Center" VerticalOptions="Center">
+        <views:EncabezadoView />
+        <Label Text="Lista de Proveedores" FontSize="28" FontFamily="AileronBold" TextColor="Black" HorizontalOptions="Center"/>
+
+        <ListView x:Name="ListaProveedores">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Nombre}" Detail="{Binding Detalle}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <VerticalStackLayout>
+            <Label Text="Agregar proveedor"/>
+
+            <Entry x:Name="Nombre" 
+                    Placeholder="Ingrese el nombre del proveedor" 
+                    VerticalOptions="Center" />
+            
+            <Entry x:Name="Telefono" 
+                    Placeholder="Ingrese el telefono del contacto" 
+                    VerticalOptions="Center" />
+            
+            <Entry x:Name="Servicio" 
+                    Placeholder="Ingrese la descripcion del servicio" 
+                    VerticalOptions="Center" />
+
+            <Button Text="Agregar Proveedor"
+                    Clicked="AgregarClicked"
+                HorizontalOptions="Center" 
+                VerticalOptions="Center" 
+                BackgroundColor="#007AFF" 
+                TextColor="White"/>
         </VerticalStackLayout>
-    </ScrollView>
+        
+
+        <Label Text="Eliminar proveedor"/>
+        <Entry x:Name="IdElim" 
+                   Placeholder="Ingrese el ID del proveedor a eliminar" 
+                   Keyboard="Numeric" />
+        
+        <Button Text="Eliminar Proveedor"
+                Clicked="EliminarClicked"
+                HorizontalOptions="Center" 
+                VerticalOptions="Center" 
+                BackgroundColor="#FF3B30" 
+                TextColor="White"/>
+    </VerticalStackLayout>
 </ContentPage>
