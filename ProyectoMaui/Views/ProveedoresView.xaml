@@ -3,54 +3,99 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:ProyectoMaui.Views"
              x:Class="ProyectoMaui.Views.ProveedoresView"
-             BackgroundColor="#82C2FF"
-             Title="ProveedoresView">
-    <VerticalStackLayout Padding="30" Spacing="20" HorizontalOptions="Center" VerticalOptions="Center">
-        <views:EncabezadoView />
-        <Label Text="Lista de Proveedores" FontSize="28" FontFamily="AileronBold" TextColor="Black" HorizontalOptions="Center"/>
+             BackgroundColor="#FBF0FF">
 
-        <ListView x:Name="ListaProveedores">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextCell Text="{Binding Nombre}" Detail="{Binding Detalle}"/>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="20">
 
-        <VerticalStackLayout>
-            <Label Text="Agregar proveedor"/>
+            <views:EncabezadoView />
 
-            <Entry x:Name="Nombre" 
-                    Placeholder="Ingrese el nombre del proveedor" 
-                    VerticalOptions="Center" />
+            <Label Text="Proveedores"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   TextColor="Black" 
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="Center"/>
             
-            <Entry x:Name="Telefono" 
-                    Placeholder="Ingrese el telefono del contacto" 
-                    VerticalOptions="Center" />
-            
-            <Entry x:Name="Servicio" 
-                    Placeholder="Ingrese la descripcion del servicio" 
-                    VerticalOptions="Center" />
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Ingresa la informacion del proveedor:" FontFamily="OpenSansSemibold" FontSize="15" TextColor="Black" Margin="5,0,0,0"
+                       HorizontalOptions="Center"
+                       WidthRequest="340"
+                       Padding="15,0,0,0"/>
+                
+                <Border Style="{StaticResource OvalBorderStyle}" Padding="15,0">
+                    <Entry Style="{StaticResource OvalEntryStyle}" 
+                           BackgroundColor="Transparent"
+                           Placeholder="Nombre" 
+                           HorizontalOptions="FillAndExpand" 
+                           x:Name="nombreEntry"/>
+                </Border>
+                
+                <Border Style="{StaticResource OvalBorderStyle}" Padding="15,0">
+                    <Entry Style="{StaticResource OvalEntryStyle}" 
+                           BackgroundColor="Transparent"
+                           Placeholder="Telefono" 
+                           HorizontalOptions="FillAndExpand" 
+                           x:Name="telefonoEntry"
+                           Keyboard="Numeric"/>
+                </Border>
+                
+                <Border Style="{StaticResource OvalBorderStyle}" Padding="15,0">
+                    <Entry Style="{StaticResource OvalEntryStyle}" 
+                           BackgroundColor="Transparent"
+                           Placeholder="Servicio" 
+                           HorizontalOptions="FillAndExpand" 
+                           x:Name="servicioEntry"/>
+                </Border>
+            </VerticalStackLayout>
 
-            <Button Text="Agregar Proveedor"
-                    Clicked="AgregarClicked"
-                HorizontalOptions="Center" 
-                VerticalOptions="Center" 
-                BackgroundColor="#007AFF" 
-                TextColor="White"/>
+            <Button Text="Crear Proveedor"
+                    BackgroundColor="#451C54"
+                    TextColor="White"
+                    Clicked="OnCrearProveedorClicked" />
+
+            <CollectionView ItemsSource="{Binding Proveedores}"
+                            Margin="0,20,0,0"
+                            HeightRequest="500">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BackgroundColor="White"
+                               BorderColor="Transparent"
+                               CornerRadius="12"
+                               Padding="10"
+                               Margin="0,5">
+                            <VerticalStackLayout Spacing="5">
+                                <Label Text="{Binding Id, StringFormat='ID: {0}'}" FontAttributes="Bold" />
+                                <Label Text="{Binding Nombre, StringFormat='Nombre: {0}'}" />
+                                <Label Text="{Binding Telefono, StringFormat='Telefono: {0}'}" />
+                                <Label Text="{Binding Servicio, StringFormat='Descripcion: {0}'}" />
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            
+            <VerticalStackLayout>
+                <Label Text="Ingresa el identificador del proveedor:" FontFamily="OpenSansSemibold" FontSize="15" TextColor="Black" Margin="5,0,0,0"
+                       HorizontalOptions="Center"
+                       WidthRequest="340"
+                       Padding="15,0,0,0"/>
+                
+                <Border Style="{StaticResource OvalBorderStyle}" Padding="15,0">
+                    <Entry Style="{StaticResource OvalEntryStyle}" 
+                           BackgroundColor="Transparent"
+                           Placeholder="Identificador" 
+                           HorizontalOptions="FillAndExpand" 
+                           x:Name="idEntry"
+                           Keyboard="Numeric"/>
+                </Border>
+                
+                <Button Text="Borrar Proveedor"
+                        BackgroundColor="#451C54"
+                        TextColor="White"
+                        Clicked="OnDeleteProveedorClicked" />
+            </VerticalStackLayout>
+
         </VerticalStackLayout>
-        
-
-        <Label Text="Eliminar proveedor"/>
-        <Entry x:Name="IdElim" 
-                   Placeholder="Ingrese el ID del proveedor a eliminar" 
-                   Keyboard="Numeric" />
-        
-        <Button Text="Eliminar Proveedor"
-                Clicked="EliminarClicked"
-                HorizontalOptions="Center" 
-                VerticalOptions="Center" 
-                BackgroundColor="#FF3B30" 
-                TextColor="White"/>
-    </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
