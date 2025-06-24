@@ -1,63 +1,34 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using System.Net.Http.Headers;
 using Newtonsoft.Json;
-using System.Buffers.Text;
 using ProyectoMaui.Models;
 
+namespace ProyectoMaui.Services;
 
-
-namespace Proyecto.Services
+public class AuthServices
 {
-    public class AuthServices
+    private readonly HttpClient _httpClient;
+    private const string BaseUrl = "https://b8c8-177-245-253-133.ngrok-free.app/api/usuarios"; // Cambia si usas IP externa
+
+    public AuthServices()
     {
-        private readonly HttpClient _httpClient;
-        private const string BaseUrl = "https://localhost:44324/api";
-        //admin@techstore.com
-        //admin123
+        _httpClient = new HttpClient();
+    }
 
-        public AuthServices()
-        {
-            _httpClient = new HttpClient();
-            _httpClient.DefaultRequestHeaders.Accept.Add(
-                new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json")
-            );
-        }
+    public async Task<LoginResponse?> LoginAsync(string usuario, string contrasena)
+    {
+        var data = new { usuario, contrasena };
+        var json = JsonConvert.SerializeObject(data); // Usamos Newtonsoft aquí
+        var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-        public async Task<bool> Login(string email, string password)
-        {
-            try
-            {
-                var requestData = new { email, password };
-                var json = JsonConvert.SerializeObject(requestData);
-                var content = new StringContent(json, Encoding.UTF8, "application/json");
+        var response = await _httpClient.PostAsync($"{BaseUrl}/login", content);
+        if (!response.IsSuccessStatusCode)
+            return null;
 
-                var response = await _httpClient.PostAsync($"{BaseUrl}/auth/login", content);
+        var responseBody = await response.Content.ReadAsStringAsync();
 
-                if (!response.IsSuccessStatusCode)
-                {
-                    return false;
-                }
-
-                var responseContent = await response.Content.ReadAsStringAsync();
-                var result = JsonConvert.DeserializeObject<AuthResponse>(responseContent);
-
-                if (result?.Success == true)
-                {
-                    Preferences.Set("user", result.Usuario.Nombre);
-                    return true;
-                }
-
-                return false;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-                throw;
-            }
-        }
+        // También usamos Newtonsoft aquí
+        return JsonConvert.DeserializeObject<LoginResponse>(responseBody);
     }
 }

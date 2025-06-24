@@ -19,72 +19,63 @@
                            Aspect="AspectFill"
                            HorizontalOptions="Center"/>
                     
-                        <VerticalStackLayout Spacing="20">
+                    <VerticalStackLayout Spacing="20">
                             
-                            <!-- Usuario -->
-                            <VerticalStackLayout Spacing="5">
-                                <Label Text="   Usuario" FontFamily="OpenSansSemibold" FontSize="15" TextColor="Black"/>
-                                <Border Style="{StaticResource OvalBorderStyle}">
-                                    <Entry Style="{StaticResource OvalEntryStyle}" BackgroundColor="Transparent" Placeholder="     booba@gmail.com"/>
-                                </Border>
-                            </VerticalStackLayout>
-
-                            <!-- Contraseña -->
-                            <VerticalStackLayout Spacing="5">
-                                <Label Text="   Contraseña" FontFamily="OpenSansSemibold" FontSize="15" TextColor="Black"/>
-                                <Border Style="{StaticResource OvalBorderStyle}">
-                                    <Entry Style="{StaticResource OvalEntryStyle}" BackgroundColor="Transparent" Placeholder="     ••••••••" IsPassword="True"/>
-                                </Border>
-                            </VerticalStackLayout>
-
-                            <!-- Rol -->
-                            <VerticalStackLayout Spacing="5">
-                                <Label Text="   Rol" FontFamily="OpenSansSemibold" FontSize="15" TextColor="Black"/>
-                                <Picker Style="{StaticResource OvalPickerStyle}" Title="     Selecciona un rol..." SelectedIndex="{Binding SelectedRole}">
-                                    <Picker.ItemsSource>
-                                        <x:Array Type="{x:Type x:String}">
-                                            <x:String>Administrador</x:String>
-                                            <x:String>Mesero</x:String>
-                                            <x:String>Cocinero</x:String>
-                                        </x:Array>
-                                    </Picker.ItemsSource>
-                                </Picker>
-                            </VerticalStackLayout>
-
-
-                            <!-- Botón Login -->
-                            <Button Text="Iniciar Sesión"
-                                    BackgroundColor="#451C54"
-                                    TextColor="White"
-                                    FontFamily="OpenSansSemibold" 
-                                    FontSize="15"
-                                    CornerRadius="10"
-                                    HeightRequest="50"
-                                    Clicked="OnLoginClicked"/>
-                            
-                            <!-- Botón Signup -->
-                            <Label FontSize="15"
-                                   FontFamily="OpenSans"
-                                   TextColor="Black"
-                                   HorizontalOptions="Center">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text="Aún no tienes una cuenta? " />
-                                        <Span Text="Regístrate aquí"
-                                              TextDecorations="Underline"
-                                              TextColor="Black">
-                                            <Span.GestureRecognizers>
-                                                <TapGestureRecognizer Tapped="OnSignupClicked" />
-                                            </Span.GestureRecognizers>
-                                        </Span>
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-
+                        <!-- Usuario -->
+                        <VerticalStackLayout Spacing="5">
+                            <Label Text="   Usuario" FontFamily="OpenSansSemibold" FontSize="15" TextColor="Black"/>
+                            <Border Style="{StaticResource OvalBorderStyle}">
+                                <Entry x:Name="UsuarioEntry"
+                                       Style="{StaticResource OvalEntryStyle}" 
+                                       BackgroundColor="Transparent" 
+                                       Placeholder="     booba@gmail.com"/>
+                            </Border>
                         </VerticalStackLayout>
+
+                        <!-- Contraseña -->
+                        <VerticalStackLayout Spacing="5">
+                            <Label Text="   Contraseña" FontFamily="OpenSansSemibold" FontSize="15" TextColor="Black"/>
+                            <Border Style="{StaticResource OvalBorderStyle}">
+                                <Entry x:Name="ContrasenaEntry"
+                                       Style="{StaticResource OvalEntryStyle}" 
+                                       BackgroundColor="Transparent" 
+                                       Placeholder="     ••••••••" 
+                                       IsPassword="True"/>
+                            </Border>
+                        </VerticalStackLayout>
+
+                        <!-- Botón Login -->
+                        <Button Text="Iniciar Sesión"
+                                BackgroundColor="#451C54"
+                                TextColor="White"
+                                FontFamily="OpenSansSemibold" 
+                                FontSize="15"
+                                CornerRadius="10"
+                                HeightRequest="50"
+                                Clicked="OnLoginClicked"/>
+                        
+                        <!-- Botón Signup -->
+                        <Label FontSize="15"
+                               FontFamily="OpenSans"
+                               TextColor="Black"
+                               HorizontalOptions="Center">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="¿Aún no tienes una cuenta? " />
+                                    <Span Text="Regístrate aquí"
+                                          TextDecorations="Underline"
+                                          TextColor="Black">
+                                        <Span.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnSignupClicked" />
+                                        </Span.GestureRecognizers>
+                                    </Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                    </VerticalStackLayout>
                 </VerticalStackLayout>
             </Grid>
         </ScrollView>
     </Grid>
 </ContentPage>
-
