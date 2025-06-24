@@ -43,5 +43,11 @@ namespace ProyectoMaui.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
+        
+        public async Task<bool> AgregarPlatilloAsync(Menupost nuevo)
+        {
+            return await _menuService.AgregarPlatilloAsync(nuevo);
+        }
     }
+    
 }

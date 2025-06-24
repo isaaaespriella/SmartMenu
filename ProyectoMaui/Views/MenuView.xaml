@@ -4,7 +4,7 @@
              xmlns:views="clr-namespace:ProyectoMaui.Views"
              x:Class="ProyectoMaui.Views.MenuView"
              BackgroundColor="#FBF0FF">
-
+    <ScrollView>
     <VerticalStackLayout Padding="30" Spacing="20">
 
         <views:EncabezadoView />
@@ -35,6 +35,17 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-
+        <Button Text="Agregar Platillo"
+                Clicked="OnAgregarPlatillo"
+                BackgroundColor="#451C54"
+                TextColor="White"
+                FontFamily="OpenSansSemibold"
+                FontSize="15"
+                CornerRadius="10"
+                HeightRequest="50"
+                Margin="0,20,0,0" />
+        
     </VerticalStackLayout>
+        
+    </ScrollView>
 </ContentPage>

@@ -18,5 +18,11 @@ namespace ProyectoMaui.Services
             return await _httpClient.GetFromJsonAsync<List<Menu>>("api/menu")
                    ?? new List<Menu>();
         }
+        
+        public async Task<bool> AgregarPlatilloAsync(Menupost nuevo)
+        {
+            var response = await _httpClient.PostAsJsonAsync("api/menu", nuevo);
+            return response.IsSuccessStatusCode;
+        }
     } 
 }
