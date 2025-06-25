@@ -66,9 +66,9 @@
                                Margin="0,5">
                             <VerticalStackLayout Spacing="5">
                                 <Label Text="{Binding Id, StringFormat='ID: {0}'}" FontAttributes="Bold" />
-                                <Label Text="{Binding Nombre, StringFormat='Nombre: {0}'}" />
+                                <Label Text="{Binding Nombre}" />
                                 <Label Text="{Binding Telefono, StringFormat='Telefono: {0}'}" />
-                                <Label Text="{Binding Servicio, StringFormat='Descripcion: {0}'}" />
+                                <Label Text="{Binding Servicio}" />
                             </VerticalStackLayout>
                         </Frame>
                     </DataTemplate>
@@ -95,6 +95,68 @@
                         TextColor="White"
                         Clicked="OnDeleteProveedorClicked" />
             </VerticalStackLayout>
+            
+            <VerticalStackLayout Spacing="10">
+    
+                <!-- Botón para mostrar/ocultar el formulario -->
+                <Button Text="Modificar proveedor"
+                        BackgroundColor="#8E44AD"
+                        TextColor="White"
+                        Clicked="OnToggleModificarProveedor" />
+
+                <!-- Formulario para modificar proveedor -->
+                <VerticalStackLayout x:Name="ModificarProveedorForm" Spacing="5" IsVisible="False">
+
+                    <Label Text="Editar proveedor:"
+                           FontFamily="OpenSansSemibold"
+                           FontSize="15"
+                           TextColor="Black"
+                           Margin="5,0,0,0"
+                           HorizontalOptions="Center"
+                           WidthRequest="340"
+                           Padding="15,0,0,0"/>
+                    
+                    <Border Style="{StaticResource OvalBorderStyle}" Padding="15,0">
+                        <Entry Style="{StaticResource OvalEntryStyle}" 
+                               BackgroundColor="Transparent"
+                               Placeholder="Nombre"
+                               x:Name="idEntryMod"
+                               HorizontalOptions="FillAndExpand"/>
+                    </Border>
+
+                    <Border Style="{StaticResource OvalBorderStyle}" Padding="15,0">
+                        <Entry Style="{StaticResource OvalEntryStyle}" 
+                               BackgroundColor="Transparent"
+                               Placeholder="Nombre"
+                               x:Name="nombreEntryMod"
+                               HorizontalOptions="FillAndExpand"/>
+                    </Border>
+
+                    <Border Style="{StaticResource OvalBorderStyle}" Padding="15,0">
+                        <Entry Style="{StaticResource OvalEntryStyle}" 
+                               BackgroundColor="Transparent"
+                               Placeholder="Teléfono"
+                               x:Name="telefonoEntryMod"
+                               Keyboard="Numeric"
+                               HorizontalOptions="FillAndExpand"/>
+                    </Border>
+
+                    <Border Style="{StaticResource OvalBorderStyle}" Padding="15,0">
+                        <Entry Style="{StaticResource OvalEntryStyle}" 
+                               BackgroundColor="Transparent"
+                               Placeholder="Servicio"
+                               x:Name="servicioEntryMod"
+                               HorizontalOptions="FillAndExpand"/>
+                    </Border>
+
+                    <Button Text="Guardar Cambios"
+                            BackgroundColor="#451C54"
+                            TextColor="White"
+                            Clicked="OnModificarProveedorClicked"/>
+                </VerticalStackLayout>
+
+            </VerticalStackLayout>
+
 
         </VerticalStackLayout>
     </ScrollView>

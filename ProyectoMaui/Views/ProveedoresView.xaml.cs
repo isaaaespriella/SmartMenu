@@ -1,3 +1,4 @@
+using ProyectoMaui.Models;
 using ProyectoMaui.ViewModels;
 using ProyectoMaui.Services;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -16,6 +17,11 @@ public partial class ProveedoresView : ContentPage
         Shell.SetNavBarIsVisible(this, false);    
     }
     
+    private void OnToggleModificarProveedor(object sender, EventArgs e)
+    {
+        ModificarProveedorForm.IsVisible = !ModificarProveedorForm.IsVisible;
+    }
+    
     protected override async void OnAppearing()
     {
         base.OnAppearing();
@@ -26,9 +32,10 @@ public partial class ProveedoresView : ContentPage
     {
         string nombre = nombreEntry.Text;
         string servicio = servicioEntry.Text;
+        string telefono = telefonoEntry.Text;
         
         if (!string.IsNullOrWhiteSpace(nombre) &&
-            int.TryParse(telefonoEntry.Text, out int telefono) &&
+            !string.IsNullOrWhiteSpace(nombre) &&
             !string.IsNullOrWhiteSpace(servicio))
         {
             await viewModel.CrearProveedorAsync(nombre, telefono, servicio);
@@ -40,6 +47,11 @@ public partial class ProveedoresView : ContentPage
         {
             await DisplayAlert("Error", "Debes ingresar IDs válidos", "OK");
         }
+    }
+    
+    private async void OnEditarInvoked(object sender, EventArgs e)
+    {
+        
     }
 
     private async void OnDeleteProveedorClicked(object sender, EventArgs e)
@@ -55,28 +67,51 @@ public partial class ProveedoresView : ContentPage
         }
     }
 
-    /*
-    //se eliminan al v
-    private async void EliminarClicked(object sender, EventArgs e)
+    private async void OnModificarProveedorClicked(object sender, EventArgs e)
     {
-        if (!int.TryParse(IdElim.Text, out int id))
+        try
         {
-            await DisplayAlert("Error", "Debes ingresar un ID numérico válido.", "OK");
-            return;
-        }
+            // Validar entradas
+            if (string.IsNullOrWhiteSpace(nombreEntry.Text) ||
+                string.IsNullOrWhiteSpace(telefonoEntry.Text) ||
+                string.IsNullOrWhiteSpace(servicioEntry.Text))
+            {
+                await DisplayAlert("Error", "Todos los campos son obligatorios.", "OK");
+                return;
+            }
 
-        bool eliminado = await _proveedoresService.DeleteProveedor(id);
+            // Crear objeto proveedor
+            var proveedorActualizado = new Proveedor
+            {
+                Nombre = nombreEntryMod.Text,
+                Telefono = telefonoEntryMod.Text,
+                Servicio = servicioEntryMod.Text
+            };
 
-        if (eliminado)
-        {
-            await DisplayAlert("Éxito", $"Proveedor con ID {id} eliminado correctamente.", "OK");
-            await CargarProveedores();
-            IdElim.Text = string.Empty; // Limpia el entry
+            if (!int.TryParse(idEntryMod.Text, out int proveedorId))
+            {
+                await DisplayAlert("Error", "ID inválido.", "OK");
+                return;
+            }
+
+            bool resultado = await viewModel.ModificarProveedorAsync(proveedorId, proveedorActualizado);
+
+
+            if (resultado)
+            {
+                await DisplayAlert("Éxito", "Proveedor actualizado correctamente.", "OK");
+                // Opcional: refrescar lista
+                await viewModel.ObtenerProveedoresAsync();
+            }
+            else
+            {
+                await DisplayAlert("Error", "No se pudo actualizar el proveedor.", "OK");
+            }
         }
-        else
+        catch (Exception ex)
         {
-            await DisplayAlert("Error", $"No se pudo eliminar el proveedor con ID {id}.", "OK");
+            await DisplayAlert("Error", $"Excepción: {ex.Message}", "OK");
         }
     }
-    */
+
 }

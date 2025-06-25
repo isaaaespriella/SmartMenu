@@ -37,7 +37,7 @@ namespace ProyectoMaui.ViewModels
             }
         }
 
-        public async Task CrearProveedorAsync(string nombre, int telefono, string servicio)
+        public async Task CrearProveedorAsync(string nombre, string telefono, string servicio)
         {
             try
             {
@@ -93,6 +93,11 @@ namespace ProyectoMaui.ViewModels
             {
                 await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
             }
+        }
+        
+        public async Task<bool> ModificarProveedorAsync(int id, Proveedor proveedor)
+        {
+            return await _proveedorService.ModificarProveedorAsync(id, proveedor);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
